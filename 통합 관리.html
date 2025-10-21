@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통합 금융 가이드 및 계산기</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .tab-button {
+            padding: 12px 20px;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #666;
+        }
+        
+        .tab-button.active {
+            border-bottom-color: #3498db;
+            color: #3498db;
+            background-color: #f0f8ff;
+        }
+        
+        .tab-button:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 가이드 스타일 */
+        .guide-container {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .guide-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c3e50;
+        }
+
+        .guide-h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .guide-subtitle {
+            font-size: 13px;
+            color: #7f8c8d;
+        }
+
+        .guide-section {
+            margin-bottom: 25px;
+        }
+
+        .guide-h2 {
+            font-size: 16px;
+            font-weight: 700;
+            background-color: #34495e;
+            color: white;
+            padding: 10px 15px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            background-color: #ecf0f1;
+            padding: 12px;
+            border-left: 4px solid #3498db;
+            border-radius: 3px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 12px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            color: #27ae60;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .info-value.alert {
+            color: #e74c3c;
+        }
+
+        .guide-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .guide-table thead {
+            background-color: #34495e;
+            color: white;
+        }
+
+        .guide-table th {
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #bdc3c7;
+        }
+
+        .guide-table td {
+            padding: 9px 8px;
+            border: 1px solid #ecf0f1;
+        }
+
+        .guide-table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 12px;
+            margin: 10px 0;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #856404;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #e8f4f8;
+            color: #2980b9;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <div class="max-w-6xl mx-auto">
+        <!-- 탭 네비게이션 -->
+        <div class="bg-white border-b border-slate-200 sticky top-0 z-50">
+            <div class="flex gap-0 px-4">
+                <button class="tab-button active" onclick="switchTab('guide1')">
+                    희망담보 대출
+                </button>
+                <button class="tab-button" onclick="switchTab('calculator')">
+                    다기능 계산기
+                </button>
+                <button class="tab-button" onclick="switchTab('guide2')">
+                    개인정보 관리
+                </button>
+            </div>
+        </div>
+
+        <!-- 탭 컨텐츠 -->
+        <div class="p-4 md:p-6">
+            <!-- 탭 1: 희망담보 대출 가이드 -->
+            <div id="guide1" class="tab-content active">
+                <div class="guide-container max-w-4xl mx-auto bg-white rounded-lg p-6 md:p-8">
+                    <div class="guide-header">
+                        <h1 class="guide-h1">희망담보</h1>
+                        <p class="guide-subtitle">대출 상품 가이드라인 (최종 업데이트)</p>
+                    </div>
+
+                    <div class="guide-section">
+                        <h2 class="guide-h2">📋 기본 상품 정보</h2>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">상품명</span>
+                                <span class="info-value">희망담보</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">대출기간</span>
+                                <span class="info-value">2년</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">대출대상</span>
+                                <span class="info-value">아파트 및 주상복합아파트</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">취급 가능 지역</span>
+                                <span class="info-value">서울, 경기도, 인천</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">신용점수</span>
+                                <span class="info-value">커트라인 없음<span class="tag">단, 연체자 불가</span></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">소득 심사</span>
+                                <span class="info-value">본인/배우자/기타 소득 중요</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">상환방식</span>
+                                <span class="info-value">만기일시상환</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">중도상환수수료</span>
+                                <span class="info-value">3%</span>
+                            </div>
+                        </div>
+
+                        <h3 style="font-size: 13px; color: #2c3e50; margin: 12px 0 8px; font-weight: 600;">금리</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">대출금리</span>
+                                <span class="info-value">10.9% (예외) / 11.9 ~ 13.9%</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">연체금리</span>
+                                <span class="info-value alert">대출금리 + 3.0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="guide-section">
+                        <h2 class="guide-h2">📊 시세 적용 기준</h2>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 30%;">구분</th>
+                                    <th>적용 기준</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>하한가</strong></td>
+                                    <td>1~2인층</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>일반가</strong></td>
+                                    <td>그 외인층</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>시세 출처</strong></td>
+                                    <td>KB시세 우선 적용, 부동산테크 적용</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="guide-section">
+                        <h2 class="guide-h2">💰 LTV 및 금리</h2>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 30%;">구분</th>
+                                    <th style="width: 35%;">LTV 범위</th>
+                                    <th>인층별 적용</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>선순위</strong></td>
+                                    <td>80%</td>
+                                    <td>전체</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>후순위</strong></td>
+                                    <td>80%</td>
+                                    <td>전체</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="guide-section">
+                        <h2 class="guide-h2">👤 사업자 자격 조건</h2>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40%;">조건</th>
+                                    <th>필수여부</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>즉발사업자 가능</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>폐업이 아닌 개업상태</strong></td>
+                                    <td><span style="color: #e74c3c; font-weight: 600;">필수</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="guide-section">
+                        <h2 class="guide-h2">🏠 인정 부동산 조건</h2>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th>조건</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>소유권이전 3개월 이후 부동산</td>
+                                </tr>
+                                <tr>
+                                    <td>준공후 45년 미만 및 시세 3억 초과 부동산</td>
+                                </tr>
+                                <tr>
+                                    <td>이 세대수 100세대 이상 부동산</td>
+                                </tr>
+                                <tr>
+                                    <td>후순위 취급시 선순위 채권자: <strong>금융기관에 한함</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>물상보증인(배우자 및 직계존비속) 가능</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="note">
+                            ※ 금융기관: 금융소비자 보호에 관한 법률 제2조 제6호 기준 내지 마련 적용
+                        </div>
+                    </div>
+
+                    <div class="guide-section">
+                        <h2 class="guide-h2">❌ 취급 불가</h2>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th>취급 불가 사항</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>부동산업/매매업, 사치향락 등 불건전업종 (도박, 매춘, 유흥업소 등)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>연체 및 채무불이행 등의 고객</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>차주 및 담보채권자의 법인 또는 외국인 경우</td>
+                                </tr>
+                                <tr>
+                                    <td>소유권에 대한 권리침해의 소지가 있는 경우</td>
+                                </tr>
+                                <tr>
+                                    <td>세대 전입이 없는 경우</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="note">
+                            ※ 소득 없어도 가능하나, 심사시 부결될 수 있습니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 탭 2: 다기능 계산기 -->
+            <div id="calculator" class="tab-content">
+                <div class="bg-white rounded-lg p-6 md:p-8">
+                    <h1 class="text-2xl md:text-3xl font-bold mb-6">다기능 계산기</h1>
+
+                    <!-- 부가세 계산기 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm mb-6 border border-slate-200">
+                        <h2 class="text-xl font-bold mb-4 pb-2 border-b">부가세 계산기</h2>
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">부가세 포함 금액 입력</label>
+                            <input type="text" id="vatInput" oninput="calculateVAT()" class="w-full border rounded-xl px-3 py-2" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">공급가액</label>
+                            <input type="text" id="supplyAmount" readonly class="w-full border rounded-xl px-3 py-2 bg-slate-100" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">부가세</label>
+                            <input type="text" id="vatOutput" readonly class="w-full border rounded-xl px-3 py-2 bg-slate-100" />
+                        </div>
+                        <button onclick="resetVAT()" class="px-4 py-2 rounded-xl bg-blue-500 text-white hover:bg-blue-600 transition">부가세 초기화</button>
+                    </div>
+
+                    <!-- 공급자별 자동금액 합산기 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm mb-6 border border-slate-200">
+                        <h2 class="text-xl font-bold mb-4 pb-2 border-b">공급자별 자동금액 합산기</h2>
+                        <button onclick="addSupplier()" class="px-4 py-2 rounded-xl bg-blue-500 text-white hover:bg-blue-600 transition mb-4">공급자 추가 +</button>
+                        <div id="suppliers-container"></div>
+                    </div>
+
+                    <!-- 공급자 분배금 계산기 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm mb-6 border border-slate-200">
+                        <h2 class="text-xl font-bold mb-4 pb-2 border-b">공급자 분배금 계산기</h2>
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">이 분배 금액</label>
+                            <input type="text" id="manualTotal" oninput="updateDistribution()" class="w-full border rounded-xl px-3 py-2" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">공급자 수</label>
+                            <div class="flex items-center gap-2">
+                                <button onclick="changeSupplierCount(-1)" class="w-10 h-10 bg-slate-200 rounded-lg font-bold hover:bg-slate-300">−</button>
+                                <input type="number" id="supplierCount" value="2" oninput="updateSupplierCount()" class="w-16 border rounded-xl px-2 py-1 text-center" />
+                                <button onclick="changeSupplierCount(1)" class="w-10 h-10 bg-slate-200 rounded-lg font-bold hover:bg-slate-300">+</button>
+                            </div>
+                        </div>
+                        <table class="w-full mb-4 border-collapse">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="p-3 text-left">공급자</th>
+                                    <th class="p-3 text-left">수기 입력 금액</th>
+                                    <th class="p-3 text-left">자동 계산 금액 원</th>
+                                </tr>
+                            </thead>
+                            <tbody id="distribution-table"></tbody>
+                        </table>
+                        <div id="distribution-summary" class="text-sm text-slate-600 mb-4"></div>
+                        <button onclick="resetManualInputs()" class="px-4 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600 transition">수기입력 초기화</button>
+                    </div>
+
+                    <!-- 이자 계산기 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                        <h2 class="text-xl font-bold mb-4 pb-2 border-b">이자 계산기</h2>
+
+                        <div id="dailyRateDisplay" class="hidden mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800"></div>
+
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">대출금액 (만원)</label>
+                            <input type="text" id="loanAmount" oninput="calculateInterest()" class="w-full border rounded-xl px-3 py-2" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">연이율 (%)</label>
+                            <input type="text" id="annualRate2" oninput="calculateInterest()" class="w-full border rounded-xl px-3 py-2" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">이자 계산 연 수 (년)</label>
+                            <input type="number" id="years" value="1" oninput="calculateInterest()" class="w-full border rounded-xl px-3 py-2" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">하루 이자</label>
+                            <input type="text" id="dailyInterest" readonly class="w-full border rounded-xl px-3 py-2 bg-slate-100" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block mb-2 font-semibold">한달 이자</label>
+                            <input type="text" id="monthlyInterest" readonly class="w-full border rounded-xl px-3 py-2 bg-slate-100" />
+                        </div>
+
+                        <div class="mb-4">
+                            <label id="yearlyLabel" class="block mb-2 font-semibold">1년 이자</label>
+                            <input type="text" id="yearlyInterest" readonly class="w-full border rounded-xl px-3 py-2 bg-slate-100" />
+                        </div>
+
+                        <button onclick="resetInterest()" class="px-4 py-2 rounded-xl bg-blue-500 text-white hover:bg-blue-600 transition">이자 초기화</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 탭 3: 개인정보 관리 가이드 -->
+            <div id="guide2" class="tab-content">
+                <div class="max-w-4xl mx-auto bg-white rounded-lg p-6 md:p-8">
+                    <div style="border-bottom: 3px solid #2c3e50; padding-bottom: 30px; margin-bottom: 40px;">
+                        <h1 style="font-size: 32px; color: #2c3e50; margin-bottom: 10px; font-weight: 700;">개인정보 보유·파기 관리 가이드</h1>
+                        <p style="font-size: 14px; color: #7f8c8d; font-style: italic;">금융 회사 내부 교육 및 실무 매뉴얼</p>
+                    </div>
+
+                    <h2 style="font-size: 22px; color: #2c3e50; margin-top: 50px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #3498db; font-weight: 700;">1. 개인정보 보유 기준</h2>
+                    
+                    <div style="background-color: #ecf0f1; border-left: 4px solid #27ae60; padding: 20px; margin: 30px 0; border-radius: 4px;">
+                        <div style="font-size: 18px; color: #27ae60; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center;">
+                            <span style="margin-right: 10px;">📋</span> 계약이 체결된 고객
+                        </div>
+                        <div style="display: grid; gap: 15px;">
+                            <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
+                                <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">보유 기간</div>
+                                <div style="color: #444; line-height: 1.6;">거래 종료 후 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px; font-weight: 600;">5년</span></div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
+                                <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">근거 법령</div>
+                                <div style="color: #444; line-height: 1.6;">「신용정보의 이용 및 보호에 관한 법률(신용정보법) 제20조의2 제2항 제1호</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 style="font-size: 22px; color: #2c3e50; margin-top: 50px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #3498db; font-weight: 700;">2. 핵심 원칙: 분리 보관과 정기적 파기</h2>
+                    
+                    <div style="background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 20px; margin: 25px 0; border-radius: 4px;">
+                        <h3 style="font-size: 16px; color: #34495e; margin-top: 30px; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center;">
+                            <span style="display: inline-block; width: 6px; height: 6px; background-color: #3498db; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></span>
+                            데이터 상태 관리
+                        </h3>
+                        <p>모든 고객 데이터는 명확한 상태 값으로 관리해야 합니다. 엑셀로 관리하든, 별도 프로그램을 사용하든 이 구분이 모든 처리의 시작입니다.</p>
+                        <ul style="margin-left: 20px; margin-top: 10px; margin-bottom: 15px;">
+                            <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사중]</span> - 현재 대출 심사 진행 중</li>
+                            <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[계약고객]</span> - 계약 체결 완료</li>
+                            <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[거래종료]</span> - 상환 완료 또는 계약 종료</li>
+                            <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사탈락]</span> / <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[신청철회]</span> - 심사 불통과 또는 고객 신청 철회</li>
+                            <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[분쟁진행중]</span> - 민원 또는 분쟁 진행 중</li>
+                        </ul>
+                    </div>
+
+                    <h2 style="font-size: 22px; color: #2c3e50; margin-top: 50px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #3498db; font-weight: 700;">3. 단계별 실무 처리 방법</h2>
+
+                    <div style="background-color: white; border: 1px solid #ecf0f1; padding: 20px; margin: 20px 0; border-radius: 4px;">
+                        <span style="display: inline-block; background-color: #3498db; color: white; width: 35px; height: 35px; border-radius: 50%; text-align: center; line-height: 35px; font-weight: 700; margin-right: 12px;">1</span>
+                        <span style="display: inline-block; font-size: 16px; font-weight: 600; color: #2c3e50;">대출 신청 및 심사</span>
+                        <div style="margin-left: 47px; margin-top: 10px; color: #555;">
+                            <strong>처리 방법:</strong>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li style="margin-bottom: 8px;">고객으로부터 '개인신용정보 수집·이용·조회 동의서' 획득</li>
+                                <li style="margin-bottom: 8px;">고객 정보를 시스템(또는 관리 파일)에 입력하고 상태를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사중]</span>으로 설정</li>
+                                <li style="margin-bottom: 8px;">종이 서류(신청서, 신분증 사본 등)는 '심사중' 서류함에 별도 보관</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background-color: white; border: 1px solid #ecf0f1; padding: 20px; margin: 20px 0; border-radius: 4px;">
+                        <span style="display: inline-block; background-color: #3498db; color: white; width: 35px; height: 35px; border-radius: 50%; text-align: center; line-height: 35px; font-weight: 700; margin-right: 12px;">2</span>
+                        <span style="display: inline-block; font-size: 16px; font-weight: 600; color: #2c3e50;">심사 결과에 따른 분리 처리 (가장 중요)</span>
+                        <p style="margin-left: 47px; margin-top: 10px; color: #555;"><strong>심사 완료 직후, 결과에 따라 고객 데이터를 즉시 분리해야 합니다.</strong></p>
+                        
+                        <div style="margin-left: 47px; margin-top: 20px;">
+                            <h3 style="font-size: 14px; font-weight: 600; margin-top: 15px; margin-bottom: 10px;">A. 계약 체결 시</h3>
+                            <ul style="margin-left: 20px;">
+                                <li style="margin-bottom: 8px;">고객 상태를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사중]</span>에서 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[계약고객]</span>으로 변경</li>
+                                <li style="margin-bottom: 8px;">종이 서류는 '심사중' 서류함에서 '계약 고객 서류함'으로 옮겨 계약서와 함께 보관</li>
+                                <li style="margin-bottom: 8px;">파기 시점: 아직 발생하지 않음. '거래 종료일'이 기준</li>
+                            </ul>
+
+                            <h3 style="font-size: 14px; font-weight: 600; margin-top: 15px; margin-bottom: 10px;">B. 계약 미체결 시 (거절, 고객 취소 등)</h3>
+                            <ul style="margin-left: 20px;">
+                                <li style="margin-bottom: 8px;">고객 상태를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사중]</span>에서 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사탈락]</span> 또는 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[신청철회]</span>로 변경</li>
+                                <li style="margin-bottom: 8px;">시스템(파일)에서 해당 고객 정보를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">'3년 후 파기 대상 목록'</span>으로 이동시키거나, 파기 예정일을 기재</li>
+                                <li style="margin-bottom: 8px;">종이 서류는 즉시 파기하거나, 'ˮ즉시 파기 대상 서류함'에 넣어 월별/분기별 파기 절차 진행</li>
+                                <li style="margin-bottom: 8px; color: #c0392b;"><strong>⚠ 주의:</strong> 활성 고객 서류와 절대 섞이면 안 됩니다.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background-color: white; border: 1px solid #ecf0f1; padding: 20px; margin: 20px 0; border-radius: 4px;">
+                        <span style="display: inline-block; background-color: #3498db; color: white; width: 35px; height: 35px; border-radius: 50%; text-align: center; line-height: 35px; font-weight: 700; margin-right: 12px;">3</span>
+                        <span style="display: inline-block; font-size: 16px; font-weight: 600; color: #2c3e50;">계약 종료 처리</span>
+                        <div style="margin-left: 47px; margin-top: 10px; color: #555;">
+                            <strong>처리 방법:</strong>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li style="margin-bottom: 8px;">고객의 대출 상환이 완료되면, 고객 상태를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[계약고객]</span>에서 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[거래종료]</span>로 변경</li>
+                                <li style="margin-bottom: 8px;">시스템(파일)에서 해당 고객 정보를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">'5년 후 파기 대상 목록'</span>으로 이동시키거나, 파기 예정일을 기재</li>
+                                <li style="margin-bottom: 8px;">이 데이터는 민원/분쟁 대응을 위한 것이므로, 일반적인 마케팅이나 연락 대상에서 완전히 제외</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h2 style="font-size: 22px; color: #2c3e50; margin-top: 50px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #3498db; font-weight: 700;">4. 특별 사항</h2>
+
+                    <div style="background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 20px; margin: 25px 0; border-radius: 4px;">
+                        <h3 style="font-size: 16px; color: #34495e; margin-bottom: 15px; font-weight: 600;">마케팅 동의 철회 요청 시</h3>
+                        <ul style="list-style: none; margin-left: 0;">
+                            <li style="margin-bottom: 12px; padding-left: 30px; position: relative;">고객이 마케팅 수신 거부 의사를 내비치는 즉시, 해당 고객 정보에서 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[마케팅동의]</span> 상태를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[마케팅거부]</span>로 변경</li>
+                            <li style="margin-bottom: 12px; padding-left: 30px; position: relative;">마케팅 발송 목록에서 영구 제외</li>
+                            <li style="padding-left: 30px; position: relative;">이는 <strong>'즉시 처리'</strong>가 원칙입니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 탭 전환 함수
+        function switchTab(tabName) {
+            // 모든 탭 컨텐츠 숨기기
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+            
+            // 선택된 탭 표시
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // ===== 다기능 계산기 함수 =====
+        const fmt = new Intl.NumberFormat("ko-KR");
+        let suppliers = [{ name: "", amounts: [""] }];
+        let supplierCountValue = 2;
+        let manualInputs = {};
+
+        function formatNumberWithCommas(value) {
+            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        function parseFormattedNumber(value) {
+            return Number(value.replace(/,/g, '')) || 0;
+        }
+
+        function parseNumber(value) {
+            return parseInt((value ?? '').toString().replace(/,/g, "")) || 0;
+        }
+
+        function formatNumber(value) {
+            const num = parseNumber(value);
+            if (num === 0 && (value === "" || value === 0)) return "";
+            return num.toLocaleString();
+        }
+
+        function sanitizeNumber(value) {
+            return value.replace(/[^0-9,]/g, "");
+        }
+
+        function sanitizeDecimal(value) {
+            return value.replace(/[^0-9.]/g, "");
+        }
+
+        function calculateVAT() {
+            const input = document.getElementById('vatInput');
+            const rawValue = input.value;
+            input.value = formatNumber(rawValue);
+            
+            const value = parseNumber(rawValue);
+            if (value > 0) {
+                const vat = Math.floor(value / 11);
+                const supply = value - vat;
+                document.getElementById('vatOutput').value = `${vat.toLocaleString()}원`;
+                document.getElementById('supplyAmount').value = `${supply.toLocaleString()}원`;
+            } else {
+                document.getElementById('vatOutput').value = "";
+                document.getElementById('supplyAmount').value = "";
+            }
+        }
+
+        function resetVAT() {
+            document.getElementById('vatInput').value = "";
+            document.getElementById('vatOutput').value = "";
+            document.getElementById('supplyAmount').value = "";
+        }
+
+        function addSupplier() {
+            suppliers.push({ name: "", amounts: [""] });
+            renderSuppliers();
+        }
+
+        function removeSupplier(index) {
+            suppliers.splice(index, 1);
+            renderSuppliers();
+        }
+
+        function updateSupplierName(index, name) {
+            suppliers[index].name = name;
+            renderSuppliers();
+        }
+
+        function updateAmount(supplierIndex, amountIndex, amount) {
+            const cleanValue = sanitizeNumber(amount);
+            suppliers[supplierIndex].amounts[amountIndex] = cleanValue;
+            const inputId = `amount-${supplierIndex}-${amountIndex}`;
+            const inputElement = document.getElementById(inputId);
+            if (inputElement && document.activeElement !== inputElement) {
+                inputElement.value = formatNumber(cleanValue);
+            }
+            renderSuppliers();
+        }
+
+        function addAmountField(supplierIndex) {
+            suppliers[supplierIndex].amounts.push("");
+            renderSuppliers();
+        }
+
+        function removeAmountField(supplierIndex, amountIndex) {
+            if (suppliers[supplierIndex].amounts.length > 1) {
+                suppliers[supplierIndex].amounts.splice(amountIndex, 1);
+                renderSuppliers();
+            }
+        }
+
+        function getSupplierTotal(amounts) {
+            return amounts.reduce((sum, amount) => sum + parseNumber(amount), 0);
+        }
+
+        function renderSuppliers() {
+            const container = document.getElementById('suppliers-container');
+            container.innerHTML = '';
+            suppliers.forEach((supplier, supplierIndex) => {
+                const supplierDiv = document.createElement('div');
+                supplierDiv.className = 'bg-slate-50 rounded-lg p-4 mb-4 border border-slate-200';
+                
+                let amountFields = '';
+                supplier.amounts.forEach((amount, amountIndex) => {
+                    amountFields += `
+                        <div class="mb-3">
+                            <label class="text-sm text-slate-600">금액</label>
+                            <div class="flex gap-2">
+                                <input type="text" 
+                                       id="amount-${supplierIndex}-${amountIndex}"
+                                       value="${formatNumber(amount)}" 
+                                       oninput="updateAmount(${supplierIndex}, ${amountIndex}, this.value)"
+                                       class="flex-1 border rounded-lg px-3 py-2"
+                                       placeholder="금액을 입력하세요">
+                                ${supplier.amounts.length > 1 ? 
+                                    `<button onclick="removeAmountField(${supplierIndex}, ${amountIndex})" class="px-3 py-2 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600">삭제</button>` : 
+                                    ''
+                                }
+                            </div>
+                        </div>
+                    `;
+                });
+
+                supplierDiv.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex-1">
+                            <label class="text-sm text-slate-600">공급자명</label>
+                            <input type="text" 
+                                   value="${supplier.name}" 
+                                   oninput="updateSupplierName(${supplierIndex}, this.value)"
+                                   class="w-full border rounded-lg px-3 py-2"
+                                   placeholder="공급자명을 입력하세요">
+                        </div>
+                        ${suppliers.length > 1 ? 
+                            `<button onclick="removeSupplier(${supplierIndex})" class="ml-2 mt-6 px-3 py-2 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600">공급자 삭제</button>` : 
+                            ''
+                        }
+                    </div>
+                    ${amountFields}
+                    <button onclick="addAmountField(${supplierIndex})" class="text-sm px-3 py-1 bg-slate-300 rounded-lg hover:bg-slate-400">
+                        금액 필드 추가
+                    </button>
+                    <div class="mt-3 p-2 bg-blue-50 rounded-lg border border-blue-200">
+                        <span class="font-semibold text-blue-900">${supplier.name || "공급자"} 합계: ${getSupplierTotal(supplier.amounts).toLocaleString()} 원</span>
+                    </div>
+                `;
+                
+                container.appendChild(supplierDiv);
+            });
+        }
+
+        function getDistSuppliers() {
+            return Array.from({ length: supplierCountValue }, (_, i) => String.fromCharCode(65 + i));
+        }
+
+        function getFinalAmount(key) {
+            const base = parseNumber(document.getElementById('manualTotal').value);
+            const distSuppliers = getDistSuppliers();
+            const manualKeys = distSuppliers.filter(k => manualInputs[k] && manualInputs[k] !== "");
+            const manualSum = manualKeys.reduce((sum, k) => sum + parseNumber(manualInputs[k]), 0);
+            const remaining = base - manualSum;
+            const autoCount = supplierCountValue - manualKeys.length;
+
+            if (manualInputs[key] && manualInputs[key] !== "") {
+                return parseNumber(manualInputs[key]);
+            } else if (autoCount > 0) {
+                return Math.floor(remaining / autoCount);
+            } else {
+                return 0;
+            }
+        }
+
+        function getTotalDistributed() {
+            return getDistSuppliers().reduce((sum, key) => sum + getFinalAmount(key), 0);
+        }
+
+        function updateDistribution() {
+            const input = document.getElementById('manualTotal');
+            const rawValue = input.value;
+            input.value = formatNumber(rawValue);
+            renderDistributionTable();
+        }
+
+        function changeSupplierCount(delta) {
+            const newCount = Math.max(1, Math.min(26, supplierCountValue + delta));
+            document.getElementById('supplierCount').value = newCount;
+            updateSupplierCount();
+        }
+
+        function updateSupplierCount() {
+            const input = document.getElementById('supplierCount');
+            const val = parseInt(input.value.replace(/[^0-9]/g, ""), 10);
+            if (!isNaN(val) && val >= 1 && val <= 26) {
+                supplierCountValue = val;
+                updateManualInputsForNewCount();
+                renderDistributionTable();
+            }
+        }
+
+        function updateManualInputsForNewCount() {
+            const newInputs = {};
+            getDistSuppliers().forEach(key => {
+                newInputs[key] = manualInputs[key] || "";
+            });
+            manualInputs = newInputs;
+        }
+
+        function updateManualInput(key, value) {
+            const cleanValue = sanitizeNumber(value);
+            manualInputs[key] = cleanValue;
+            const inputElement = document.getElementById(`manual-${key}`);
+            if (inputElement) {
+                const cursorPos = inputElement.selectionStart;
+                const formattedValue = formatNumber(cleanValue);
+                inputElement.value = formattedValue;
+                const newCursorPos = Math.min(cursorPos + (formattedValue.length - value.length), formattedValue.length);
+                inputElement.setSelectionRange(newCursorPos, newCursorPos);
+            }
+            updateDistributionResults();
+        }
+
+        function renderDistributionTable() {
+            const tbody = document.getElementById('distribution-table');
+            const distSuppliers = getDistSuppliers();
+            
+            tbody.innerHTML = '';
+            
+            distSuppliers.forEach((key, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="p-3">공급자 ${key}</td>
+                    <td class="p-3">
+                        <input type="text" 
+                               value="${formatNumber(manualInputs[key] || "")}"
+                               oninput="updateManualInput('${key}', this.value)"
+                               id="manual-${key}"
+                               class="w-full border rounded-lg px-2 py-1">
+                    </td>
+                    <td class="p-3">${getFinalAmount(key).toLocaleString()}원</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            updateDistributionSummary();
+        }
+
+        function updateDistributionResults() {
+            const distSuppliers = getDistSuppliers();
+            distSuppliers.forEach((key, index) => {
+                const rows = document.querySelectorAll('#distribution-table tr');
+                if (rows[index]) {
+                    const cells = rows[index].querySelectorAll('td');
+                    if (cells[2]) {
+                        cells[2].textContent = `${getFinalAmount(key).toLocaleString()}원`;
+                    }
+                }
+            });
+            updateDistributionSummary();
+        }
+
+        function updateDistributionSummary() {
+            const totalLoan = parseNumber(document.getElementById('manualTotal').value);
+            const distributed = getTotalDistributed();
+            const difference = distributed - totalLoan;
+            
+            document.getElementById('distribution-summary').textContent = 
+                `이합: ${distributed.toLocaleString()}원 / 오차: ${difference.toLocaleString()}원`;
+        }
+
+        function resetManualInputs() {
+            manualInputs = {};
+            getDistSuppliers().forEach(key => {
+                manualInputs[key] = "";
+            });
+            document.getElementById('manualTotal').value = "";
+            renderDistributionTable();
+        }
+
+        function calculateInterest() {
+            const loanInput = document.getElementById('loanAmount');
+            const rawLoanValue = loanInput.value;
+            loanInput.value = formatNumber(rawLoanValue);
+            
+            const rateInput = document.getElementById('annualRate2');
+            rateInput.value = sanitizeDecimal(rateInput.value);
+            
+            const yearsInput = document.getElementById('years');
+            yearsInput.value = yearsInput.value.replace(/[^0-9]/g, "");
+
+            const principalInManwon = parseNumber(rawLoanValue);
+            const principal = principalInManwon * 10000;
+            const rateValue = parseFloat(rateInput.value) || 0;
+            const rate = rateValue / 100;
+            const y = parseInt(yearsInput.value, 10) || 1;
+
+            if (principal > 0 && rate > 0 && y > 0) {
+                const year = Math.floor(principal * rate * y);
+                const month = Math.floor(year / 12);
+                const day = Math.floor(year / 365);
+                
+                document.getElementById('yearlyInterest').value = `${year.toLocaleString()}원`;
+                document.getElementById('monthlyInterest').value = `${month.toLocaleString()}원`;
+                document.getElementById('dailyInterest').value = `${day.toLocaleString()}원`;
+            } else {
+                document.getElementById('yearlyInterest').value = "";
+                document.getElementById('monthlyInterest').value = "";
+                document.getElementById('dailyInterest').value = "";
+            }
+
+            document.getElementById('yearlyLabel').textContent = `${y}년 이자`;
+            updateDailyRateDisplay(rateValue);
+        }
+
+        function updateDailyRateDisplay(rateValue) {
+            const displayDiv = document.getElementById('dailyRateDisplay');
+            if (rateValue > 0) {
+                const monthlyRate = (rateValue / 12).toFixed(3);
+                const dailyRate = (rateValue / 365).toFixed(4);
+                displayDiv.innerHTML = `연이율 <b>${rateValue}%</b>는 월 이자율 <b>${monthlyRate}%</b>, 일 이자율 <b>${dailyRate}%</b>입니다.`;
+                displayDiv.classList.remove('hidden');
+            } else {
+                displayDiv.classList.add('hidden');
+            }
+        }
+
+        function resetInterest() {
+            document.getElementById('loanAmount').value = "";
+            document.getElementById('annualRate2').value = "";
+            document.getElementById('years').value = "1";
+            document.getElementById('yearlyInterest').value = "";
+            document.getElementById('monthlyInterest').value = "";
+            document.getElementById('dailyInterest').value = "";
+            document.getElementById('dailyRateDisplay').classList.add('hidden');
+            document.getElementById('yearlyLabel').textContent = "1년 이자";
+        }
+
+        // 초기화
+        renderSuppliers();
+        renderDistributionTable();
+    </script>
+</body>
+</html>
