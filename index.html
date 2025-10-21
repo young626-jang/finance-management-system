@@ -606,45 +606,315 @@
 
             <!-- 탭 3: 개인정보 관리 -->
             <div id="guide2" class="tab-content">
-                <div class="max-w-4xl mx-auto bg-white rounded-lg p-6 md:p-8">
-                    <div style="border-bottom: 3px solid #2c3e50; padding-bottom: 30px; margin-bottom: 40px;">
-                        <h1 style="font-size: 32px; color: #2c3e50; margin-bottom: 10px; font-weight: 700;">개인정보 보유·파기 관리 가이드</h1>
-                        <p style="font-size: 14px; color: #7f8c8d; font-style: italic;">금융 회사 내부 교육 및 실무 매뉴얼</p>
+                <div class="guide-container max-w-4xl mx-auto bg-white rounded-lg p-6 md:p-8">
+                    <div class="guide-header">
+                        <h1 class="guide-h1">개인정보 보유·파기 관리 가이드</h1>
+                        <p class="guide-subtitle">금융 회사 내부 교육 및 실무 매뉴얼</p>
                     </div>
 
-                    <h2 style="font-size: 22px; color: #2c3e50; margin-top: 50px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #3498db; font-weight: 700;">1. 개인정보 보유 기준</h2>
+                    <div class="guide-section">
+                        <h2 class="guide-h2">1. 개인정보 보유 기준</h2>
 
-                    <div style="background-color: #ecf0f1; border-left: 4px solid #27ae60; padding: 20px; margin: 30px 0; border-radius: 4px;">
-                        <div style="font-size: 18px; color: #27ae60; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center;">
-                            <span style="margin-right: 10px;">📋</span> 계약이 체결된 고객
-                        </div>
-                        <div style="display: grid; gap: 15px;">
-                            <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
-                                <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">보유 기간</div>
-                                <div style="color: #444; line-height: 1.6;">거래 종료 후 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px; font-weight: 600;">5년</span></div>
+                        <div style="background-color: #ecf0f1; border-left: 4px solid #27ae60; padding: 20px; margin: 30px 0; border-radius: 4px;">
+                            <div style="font-size: 18px; color: #27ae60; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center;">
+                                <span style="margin-right: 10px;">📋</span> 계약이 체결된 고객
                             </div>
-                            <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
-                                <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">근거 법령</div>
-                                <div style="color: #444; line-height: 1.6;">「신용정보의 이용 및 보호에 관한 법률(신용정보법) 제20조의2 제2항 제1호</div>
+                            <div class="info-grid">
+                                <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
+                                    <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">보유 기간</div>
+                                    <div style="color: #444; line-height: 1.6;">거래 종료 후 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px; font-weight: 600;">5년</span></div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
+                                    <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">근거 법령</div>
+                                    <div style="color: #444; line-height: 1.6;">「신용정보의 이용 및 보호에 관한 법률」(신용정보법) 제20조의2 제2항 제1호</div>
+                                </div>
+                            </div>
+                            <div class="note" style="margin-top: 15px;">
+                                <strong>법 내용:</strong> 신용정보제공·이용자는 상거래관계가 종료된 날부터 최장 5년까지 개인신용정보를 보유·이용할 수 있습니다.
+                            </div>
+                            <div style="background-color: #d5f4e6; border-left: 4px solid #27ae60; padding: 15px; margin: 15px 0; border-radius: 4px;">
+                                <strong style="color: #229954;">해설:</strong> 대출 계약이 정상적으로 종료(원리금 전액 상환 등)된 경우, 해당 시점부터 5년 동안 정보를 보관하는 것이 맞습니다. 이는 법이 허용하는 최대 기간이며, 금융 분쟁이나 사후 관리 등을 위한 일반적인 금융권의 기준입니다.
+                            </div>
+                        </div>
+
+                        <div style="background-color: #ecf0f1; border-left: 4px solid #27ae60; padding: 20px; margin: 30px 0; border-radius: 4px;">
+                            <div style="font-size: 18px; color: #27ae60; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center;">
+                                <span style="margin-right: 10px;">📋</span> 계약 미체결 고객
+                            </div>
+                            <div class="info-grid">
+                                <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
+                                    <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">보유 기간</div>
+                                    <div style="color: #444; line-height: 1.6;">심사 종료일로부터 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px; font-weight: 600;">3년 이내 파기</span></div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
+                                    <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">근거 법령</div>
+                                    <div style="color: #444; line-height: 1.6;">「신용정보법 시행령」 제17조의2 제4항</div>
+                                </div>
+                            </div>
+                            <div class="note" style="margin-top: 15px;">
+                                <strong>법 내용:</strong> 신용정보회사 등은 개인신용정보의 조회 동의를 받은 날부터 3년이 지나면 해당 동의의 효력이 소멸한 것으로 보고 관련 정보를 삭제해야 합니다.
+                            </div>
+                            <div style="background-color: #d5f4e6; border-left: 4px solid #27ae60; padding: 15px; margin: 15px 0; border-radius: 4px;">
+                                <strong style="color: #229954;">해설:</strong> 고객이 대출을 신청하여 신용정보 조회 등에 동의했지만, 심사 결과 거절되었거나 고객이 신청을 철회한 경우에 해당합니다. 이 경우, 동의의 효력이 유지되는 기간을 최대 3년으로 보기 때문에 심사 종료 후 3년 이내에 파기하는 것이 정확한 기준입니다.
+                            </div>
+                        </div>
+
+                        <div style="background-color: #ecf0f1; border-left: 4px solid #27ae60; padding: 20px; margin: 30px 0; border-radius: 4px;">
+                            <div style="font-size: 18px; color: #27ae60; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center;">
+                                <span style="margin-right: 10px;">📋</span> 민원·분쟁 관련 기록
+                            </div>
+                            <div class="info-grid">
+                                <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
+                                    <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">보유 기간</div>
+                                    <div style="color: #444; line-height: 1.6;">처리 완료 후 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px; font-weight: 600;">5년 보관</span></div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
+                                    <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">근거 법령</div>
+                                    <div style="color: #444; line-height: 1.6;">「전자상거래 등에서의 소비자보호에 관한 법률」 제6조 및 동법 시행령 제6조</div>
+                                </div>
+                            </div>
+                            <div class="note" style="margin-top: 15px;">
+                                <strong>법 내용:</strong> 소비자의 불만 또는 분쟁처리에 관한 기록은 3년간 보존하도록 규정하고 있습니다.
+                            </div>
+                            <div style="background-color: #d5f4e6; border-left: 4px solid #27ae60; padding: 15px; margin: 15px 0; border-radius: 4px;">
+                                <strong style="color: #229954;">해설:</strong> 비록 전자상거래법에서는 3년으로 규정하고 있지만, 금융 민원이나 분쟁은 그 복잡성과 중요도를 감안하여 「신용정보법」의 최대 보관 기간인 5년을 적용하는 것이 더욱 안전하고 일반적인 실무 기준입니다.
+                            </div>
+                        </div>
+
+                        <div style="background-color: #ecf0f1; border-left: 4px solid #27ae60; padding: 20px; margin: 30px 0; border-radius: 4px;">
+                            <div style="font-size: 18px; color: #27ae60; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center;">
+                                <span style="margin-right: 10px;">📋</span> 마케팅 목적 데이터
+                            </div>
+                            <div class="info-grid">
+                                <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
+                                    <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">보유 기간</div>
+                                    <div style="color: #444; line-height: 1.6;">동의일로부터 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px; font-weight: 600;">2년 또는 철회 시 즉시 파기</span></div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 120px 1fr; gap: 15px; padding: 12px; background-color: white; border-radius: 4px;">
+                                    <div style="font-weight: 600; color: #2c3e50; min-width: 120px;">근거 법령</div>
+                                    <div style="color: #444; line-height: 1.6;">「개인정보 보호법」 제21조 및 「신용정보법」 제37조</div>
+                                </div>
+                            </div>
+                            <div class="note" style="margin-top: 15px;">
+                                <strong>법 내용:</strong> 개인정보의 보유기간이 경과했거나 처리 목적이 달성되었을 때에는 지체 없이 파기해야 합니다. 마케팅 활용 동의는 고객이 언제든지 철회할 수 있으며, 철회 시 즉시 정보 처리를 중지하고 파기해야 합니다.
+                            </div>
+                            <div style="background-color: #d5f4e6; border-left: 4px solid #27ae60; padding: 15px; margin: 15px 0; border-radius: 4px;">
+                                <strong style="color: #229954;">해설:</strong> 마케팅 동의의 유효기간을 법에서 명확히 "O년"으로 정하고 있지는 않지만, 정보통신망법의 과거 규정 등을 준용하여 실무적으로 2년마다 재동의를 받는 것이 일반적인 기준으로 자리 잡았습니다.
                             </div>
                         </div>
                     </div>
 
-                    <h2 style="font-size: 22px; color: #2c3e50; margin-top: 50px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #3498db; font-weight: 700;">2. 핵심 원칙: 분리 보관과 정기적 파기</h2>
+                    <div class="guide-section">
+                        <h2 class="guide-h2">2. 핵심 원칙: 분리 보관과 정기적 파기</h2>
 
-                    <div style="background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 20px; margin: 25px 0; border-radius: 4px;">
-                        <h3 style="font-size: 16px; color: #34495e; margin-top: 30px; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center;">
-                            <span style="display: inline-block; width: 6px; height: 6px; background-color: #3498db; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></span>
-                            데이터 상태 관리
-                        </h3>
-                        <p>모든 고객 데이터는 명확한 상태 값으로 관리해야 합니다. 엑셀로 관리하든, 별도 프로그램을 사용하든 이 구분이 모든 처리의 시작입니다.</p>
-                        <ul style="margin-left: 20px; margin-top: 10px; margin-bottom: 15px;">
-                            <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사중]</span> - 현재 대출 심사 진행 중</li>
-                            <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[계약고객]</span> - 계약 체결 완료</li>
-                            <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[거래종료]</span> - 상환 완료 또는 계약 종료</li>
-                            <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사탈락]</span> / <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[신청철회]</span> - 심사 불통과 또는 고객 신청 철회</li>
-                            <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[분쟁진행중]</span> - 민원 또는 분쟁 진행 중</li>
-                        </ul>
+                        <div style="background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 20px; margin: 25px 0; border-radius: 4px;">
+                            <h3 style="font-size: 16px; color: #34495e; margin-top: 0; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center;">
+                                <span style="display: inline-block; width: 6px; height: 6px; background-color: #3498db; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></span>
+                                데이터 상태 관리
+                            </h3>
+                            <p>모든 고객 데이터는 명확한 상태 값으로 관리해야 합니다. 엑셀로 관리하든, 별도 프로그램을 사용하든 이 구분이 모든 처리의 시작입니다.</p>
+                            <ul style="margin-left: 20px; margin-top: 10px; margin-bottom: 15px;">
+                                <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사중]</span> - 현재 대출 심사 진행 중</li>
+                                <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[계약고객]</span> - 계약 체결 완료</li>
+                                <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[거래종료]</span> - 상환 완료 또는 계약 종료</li>
+                                <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사탈락]</span> / <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[신청철회]</span> - 심사 불통과 또는 고객 신청 철회</li>
+                                <li style="margin-bottom: 8px; color: #555;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[분쟁진행중]</span> - 민원 또는 분쟁 진행 중</li>
+                            </ul>
+                        </div>
+
+                        <div style="background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 20px; margin: 25px 0; border-radius: 4px;">
+                            <h3 style="font-size: 16px; color: #34495e; margin-top: 0; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center;">
+                                <span style="display: inline-block; width: 6px; height: 6px; background-color: #3498db; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></span>
+                                물리적/논리적 분리
+                            </h3>
+                            <p>보관 기간이 만료된 데이터나 파기 대상 데이터는 활성 고객 데이터와 완전히 다른 공간으로 옮겨 접근을 차단해야 합니다.</p>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li style="margin-bottom: 8px; color: #555;">별도 폴더 또는 별도 DB 테이블 구성</li>
+                                <li style="margin-bottom: 8px; color: #555;">파기 예정 데이터는 일반 직원의 접근 제한</li>
+                                <li style="margin-bottom: 8px; color: #555;">마케팅 발송 시스템에서 자동 제외</li>
+                            </ul>
+                        </div>
+
+                        <div style="background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 20px; margin: 25px 0; border-radius: 4px;">
+                            <h3 style="font-size: 16px; color: #34495e; margin-top: 0; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center;">
+                                <span style="display: inline-block; width: 6px; height: 6px; background-color: #3498db; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></span>
+                                파기 기록 관리
+                            </h3>
+                            <p>언제, 누가, 어떤 정보를 파기했는지 반드시 기록하여 증빙 자료를 남겨야 합니다.</p>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li style="margin-bottom: 8px; color: #555;">「개인정보 파기 관리대장」에 모든 내용 기록</li>
+                                <li style="margin-bottom: 8px; color: #555;">감독기관의 자료 요청 시 중요한 증빙 자료</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="guide-section">
+                        <h2 class="guide-h2">3. 단계별 실무 처리 방법</h2>
+
+                        <div style="background-color: white; border: 1px solid #ecf0f1; padding: 20px; margin: 20px 0; border-radius: 4px;">
+                            <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+                                <div style="display: inline-block; background-color: #3498db; color: white; width: 35px; height: 35px; border-radius: 50%; text-align: center; line-height: 35px; font-weight: 700; margin-right: 12px; flex-shrink: 0;">1</div>
+                                <div style="font-size: 16px; font-weight: 600; color: #2c3e50;">대출 신청 및 심사</div>
+                            </div>
+                            <div style="margin-left: 47px; color: #555;">
+                                <strong>처리 방법:</strong>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li style="margin-bottom: 8px;">고객으로부터 '개인신용정보 수집·이용·조회 동의서' 획득</li>
+                                    <li style="margin-bottom: 8px;">고객 정보를 시스템(또는 관리 파일)에 입력하고 상태를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사중]</span>으로 설정</li>
+                                    <li style="margin-bottom: 8px;">종이 서류(신청서, 신분증 사본 등)는 '심사중 서류함'에 별도 보관</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="background-color: white; border: 1px solid #ecf0f1; padding: 20px; margin: 20px 0; border-radius: 4px;">
+                            <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+                                <div style="display: inline-block; background-color: #3498db; color: white; width: 35px; height: 35px; border-radius: 50%; text-align: center; line-height: 35px; font-weight: 700; margin-right: 12px; flex-shrink: 0;">2</div>
+                                <div style="font-size: 16px; font-weight: 600; color: #2c3e50;">심사 결과에 따른 분리 처리 (가장 중요)</div>
+                            </div>
+                            <div style="margin-left: 47px; color: #555;">
+                                <p><strong>심사 완료 직후, 결과에 따라 고객 데이터를 즉시 분리해야 합니다.</strong></p>
+
+                                <h3 style="margin-top: 20px; font-size: 15px; font-weight: 600; color: #2c3e50;">A. 계약 체결 시</h3>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li style="margin-bottom: 8px;">고객 상태를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사중]</span>에서 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[계약고객]</span>으로 변경</li>
+                                    <li style="margin-bottom: 8px;">종이 서류는 '심사중 서류함'에서 '계약 고객 서류함'으로 옮겨 계약서와 함께 보관</li>
+                                    <li style="margin-bottom: 8px;">파기 시점: 아직 발생하지 않음. '거래 종료일'이 기준</li>
+                                </ul>
+
+                                <h3 style="margin-top: 20px; font-size: 15px; font-weight: 600; color: #2c3e50;">B. 계약 미체결 시 (거절, 고객 취소 등)</h3>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li style="margin-bottom: 8px;">고객 상태를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사중]</span>에서 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사탈락]</span> 또는 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[신청철회]</span>로 변경</li>
+                                    <li style="margin-bottom: 8px;">시스템(파일)에서 해당 고객 정보를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">'3년 후 파기 대상 목록'</span>으로 이동시키거나, 파기 예정일을 기재</li>
+                                    <li style="margin-bottom: 8px;">종이 서류는 즉시 파기하거나, '즉시 파기 대상 서류함'에 넣어 월별/분기별 파기 절차 진행</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="background-color: white; border: 1px solid #ecf0f1; padding: 20px; margin: 20px 0; border-radius: 4px;">
+                            <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+                                <div style="display: inline-block; background-color: #3498db; color: white; width: 35px; height: 35px; border-radius: 50%; text-align: center; line-height: 35px; font-weight: 700; margin-right: 12px; flex-shrink: 0;">3</div>
+                                <div style="font-size: 16px; font-weight: 600; color: #2c3e50;">계약 종료 처리</div>
+                            </div>
+                            <div style="margin-left: 47px; color: #555;">
+                                <strong>처리 방법:</strong>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li style="margin-bottom: 8px;">고객의 대출 상환이 완료되면, 고객 상태를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[계약고객]</span>에서 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[거래종료]</span>로 변경</li>
+                                    <li style="margin-bottom: 8px;">시스템(파일)에서 해당 고객 정보를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">'5년 후 파기 대상 목록'</span>으로 이동시키거나, 파기 예정일을 기재</li>
+                                    <li style="margin-bottom: 8px;">이 데이터는 민원/분쟁 대응을 위한 것이므로, 일반적인 마케팅이나 연락 대상에서 완전히 제외</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="background-color: white; border: 1px solid #ecf0f1; padding: 20px; margin: 20px 0; border-radius: 4px;">
+                            <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+                                <div style="display: inline-block; background-color: #3498db; color: white; width: 35px; height: 35px; border-radius: 50%; text-align: center; line-height: 35px; font-weight: 700; margin-right: 12px; flex-shrink: 0;">4</div>
+                                <div style="font-size: 16px; font-weight: 600; color: #2c3e50;">정기적인 파기 실행</div>
+                            </div>
+                            <div style="margin-left: 47px; color: #555;">
+                                <p><strong>정기적으로 날짜를 정해 아래 업무를 수행하는 담당자를 지정해야 합니다.</strong> (예: 매월 말 또는 매 분기 초)</p>
+
+                                <h3 style="margin-top: 15px; font-size: 15px; font-weight: 600; color: #2c3e50;">파기 대상 목록 확인</h3>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li style="margin-bottom: 8px;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[심사탈락]</span>, <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[신청철회]</span> 상태의 고객 중, 심사종료일이 3년을 초과한 고객 목록 추출</li>
+                                    <li style="margin-bottom: 8px;"><span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[거래종료]</span> 상태의 고객 중, 거래종료일이 5년을 초과한 고객 목록 추출</li>
+                                </ul>
+
+                                <h3 style="margin-top: 15px; font-size: 15px; font-weight: 600; color: #2c3e50;">파기 실행</h3>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li style="margin-bottom: 8px;"><strong>디지털 파일:</strong> DB, 엑셀 등 복구할 수 없는 방법으로 영구 삭제 (예: DB에서 DELETE 실행, 파일 완전 삭제)</li>
+                                    <li style="margin-bottom: 8px;"><strong>종이 서류:</strong> 문서 파쇄기(분쇄기)를 이용하여 파쇄</li>
+                                </ul>
+
+                                <h3 style="margin-top: 15px; font-size: 15px; font-weight: 600; color: #2c3e50;">파기 관리대장 작성</h3>
+                                <p><strong>필수 기재 항목:</strong></p>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li style="margin-bottom: 8px;">파기 일자</li>
+                                    <li style="margin-bottom: 8px;">파기한 정보 항목 (예: 김○○ 고객의 대출 심사 서류 일체)</li>
+                                    <li style="margin-bottom: 8px;">파기 방법 (예: 문서 파쇄, DB 레코드 삭제)</li>
+                                    <li style="margin-bottom: 8px;">처리 담당자 확인(서명)</li>
+                                </ul>
+                                <p style="margin-top: 10px; color: #c0392b;">감독기관의 자료 요청 시 매우 중요한 증빙이 되므로 정확하게 기록해야 합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="guide-section">
+                        <h2 class="guide-h2">4. 특별 케이스 처리 방법</h2>
+
+                        <div style="background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 20px; margin: 25px 0; border-radius: 4px;">
+                            <h3 style="font-size: 16px; color: #34495e; margin-top: 0; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center;">
+                                <span style="display: inline-block; width: 6px; height: 6px; background-color: #3498db; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></span>
+                                마케팅 동의 철회 요청 시
+                            </h3>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li style="margin-bottom: 15px; color: #555;">고객이 마케팅 수신 거부 의사를 밝히는 즉시, 해당 고객 정보에서 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[마케팅동의]</span> 상태를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[마케팅거부]</span>로 변경</li>
+                                <li style="margin-bottom: 15px; color: #555;">마케팅 발송 목록에서 영구 제외</li>
+                                <li style="margin-bottom: 15px; color: #555;">이는 <strong>'즉시 처리'</strong>가 원칙입니다.</li>
+                            </ul>
+                            <div style="background-color: #d5f4e6; border-left: 4px solid #27ae60; padding: 15px; margin: 15px 0; border-radius: 4px;">
+                                <strong style="color: #229954;">추가 관리:</strong> 2년이 지난 마케팅 동의 고객에게는 재동의를 받는 절차를 수립하는 것이 안전합니다.
+                            </div>
+                        </div>
+
+                        <div style="background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 20px; margin: 25px 0; border-radius: 4px;">
+                            <h3 style="font-size: 16px; color: #34495e; margin-top: 0; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center;">
+                                <span style="display: inline-block; width: 6px; height: 6px; background-color: #3498db; border-radius: 50%; margin-right: 12px; flex-shrink: 0;"></span>
+                                민원 또는 분쟁 발생 시
+                            </h3>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li style="margin-bottom: 8px; color: #555;">만약 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[거래종료]</span> 고객과 분쟁이 발생했다면, 해당 고객 상태를 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 3px;">[분쟁진행중]</span>으로 변경</li>
+                                <li style="margin-bottom: 8px; color: #555;">이 경우, 보관 기간은 거래종료일 기준이 아닌 <strong>'분쟁 해결이 완료된 시점'</strong>으로부터 5년으로 연장하여 관리</li>
+                            </ul>
+                            <div style="background-color: #fdeaea; border-left: 4px solid #e74c3c; padding: 15px; margin: 15px 0; border-radius: 4px;">
+                                <strong style="color: #c0392b;">⚠ 주의:</strong> 분쟁 진행 중인 고객의 데이터는 절대로 삭제하면 안 되며, 분쟁 해결 후에도 충분한 기간을 보유해야 합니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="guide-section">
+                        <h2 class="guide-h2">5. 체크리스트</h2>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 70%;">점검 항목</th>
+                                    <th>상태 확인</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>고객 데이터 상태 값 명확하게 설정되어 있는가?</td>
+                                    <td>□</td>
+                                </tr>
+                                <tr>
+                                    <td>심사탈락 고객 정보가 활성 고객과 분리되어 있는가?</td>
+                                    <td>□</td>
+                                </tr>
+                                <tr>
+                                    <td>거래종료 고객 데이터가 별도 공간에 보관되어 있는가?</td>
+                                    <td>□</td>
+                                </tr>
+                                <tr>
+                                    <td>파기 일정 기준(3년, 5년)이 명확한가?</td>
+                                    <td>□</td>
+                                </tr>
+                                <tr>
+                                    <td>정기적인 파기 담당자가 지정되어 있는가?</td>
+                                    <td>□</td>
+                                </tr>
+                                <tr>
+                                    <td>마케팅 동의 재동의 프로세스가 수립되어 있는가?</td>
+                                    <td>□</td>
+                                </tr>
+                                <tr>
+                                    <td>파기 기록을 남기는 대장이 준비되어 있는가?</td>
+                                    <td>□</td>
+                                </tr>
+                                <tr>
+                                    <td>분쟁 발생 시 절차가 정해져 있는가?</td>
+                                    <td>□</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
