@@ -12,24 +12,7 @@
             box-sizing: border-box;
         }
         
-        .tab-button {
-            padding: 12px 20px;
-            font-weight: 600;
-            border-bottom: 3px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #666;
-        }
-        
-        .tab-button.active {
-            border-bottom-color: #3498db;
-            color: #3498db;
-            background-color: #f0f8ff;
-        }
-        
-        .tab-button:hover {
-            background-color: #f5f5f5;
-        }
+        /* 상단 탭 스타일 제거됨 - 사이드바 네비게이션으로 통일 */
         
         .tab-content {
             display: none;
@@ -161,24 +144,49 @@
     </style>
 </head>
 <body class="bg-slate-50">
-    <div class="max-w-6xl mx-auto">
-        <!-- 탭 네비게이션 -->
-        <div class="bg-white border-b border-slate-200 sticky top-0 z-50">
-            <div class="flex gap-0 px-4">
-                <button class="tab-button active" onclick="switchTab('guide1')">
-                    희망담보 대출
-                </button>
-                <button class="tab-button" onclick="switchTab('calculator')">
-                    다기능 계산기
-                </button>
-                <button class="tab-button" onclick="switchTab('guide2')">
-                    개인정보 관리
-                </button>
-            </div>
-        </div>
+    <div class="max-w-7xl mx-auto">
+        <!-- 메인 콘텐츠 + 사이드바 래퍼 -->
+        <div class="flex gap-6 p-4 md:p-6">
+            <!-- 왼쪽 사이드바 -->
+            <aside class="w-72 flex-shrink-0 hidden lg:block order-first">
+                <div class="sticky top-6 space-y-4">
+                    <!-- LTV 계산기 배너 -->
+                    <a href="https://ltv-flask-young.onrender.com/" target="_blank" rel="noopener noreferrer" class="block">
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow h-48 flex flex-col justify-between text-white">
+                            <div>
+                                <div class="text-sm font-semibold opacity-90 mb-2">금융 도구</div>
+                                <h3 class="text-2xl font-bold">LTV계산기</h3>
+                            </div>
+                            <div class="text-sm opacity-90">바로가기 →</div>
+                        </div>
+                    </a>
 
-        <!-- 탭 컨텐츠 -->
-        <div class="p-4 md:p-6">
+                    <!-- 론프라전산 배너 -->
+                    <a href="https://app.loanfra.com/self_screening" target="_blank" rel="noopener noreferrer" class="block">
+                        <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow h-48 flex flex-col justify-between text-white">
+                            <div>
+                                <div class="text-sm font-semibold opacity-90 mb-2">전산 시스템</div>
+                                <h3 class="text-2xl font-bold">론프라전산</h3>
+                            </div>
+                            <div class="text-sm opacity-90">바로가기 →</div>
+                        </div>
+                    </a>
+
+                    <!-- 추가 정보 카드 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200">
+                        <h4 class="font-semibold text-slate-800 mb-3">📑 빠른 이동</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><button onclick="switchTab('guide1'); return false;" class="text-blue-600 hover:text-blue-700 font-medium hover:underline cursor-pointer">희망담보 가이드</button></li>
+                            <li><button onclick="switchTab('calculator'); return false;" class="text-blue-600 hover:text-blue-700 font-medium hover:underline cursor-pointer">다기능 계산기</button></li>
+                            <li><button onclick="switchTab('balloon'); return false;" class="text-blue-600 hover:text-blue-700 font-medium hover:underline cursor-pointer">원금퍼센트 계산</button></li>
+                            <li><button onclick="switchTab('guide2'); return false;" class="text-blue-600 hover:text-blue-700 font-medium hover:underline cursor-pointer">개인정보 관리</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 탭 컨텐츠 -->
+            <div class="flex-1">
             <!-- 탭 1: 희망담보 대출 가이드 -->
             <div id="guide1" class="tab-content active">
                 <div class="guide-container max-w-4xl mx-auto bg-white rounded-lg p-6 md:p-8">
@@ -471,10 +479,144 @@
 
                         <button onclick="resetInterest()" class="px-4 py-2 rounded-xl bg-blue-500 text-white hover:bg-blue-600 transition">이자 초기화</button>
                     </div>
+
+                    <!-- 날짜 계산기 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm mt-6 border border-slate-200">
+                        <h2 class="text-xl font-bold mb-4 pb-2 border-b">날짜 계산기</h2>
+
+                        <!-- 날짜에 일수 더하기 -->
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold mb-3 text-slate-700">1. 날짜에 일수 더하기</h3>
+                            <div class="mb-4">
+                                <label class="block mb-2 font-semibold">시작 날짜</label>
+                                <input type="date" id="dateStart" oninput="calculateDateAddition()" class="w-full border rounded-xl px-3 py-2" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-2 font-semibold">더할 일수 (일)</label>
+                                <input type="number" id="daysToAdd" oninput="calculateDateAddition()" class="w-full border rounded-xl px-3 py-2" placeholder="예: 10" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-2 font-semibold">결과 날짜</label>
+                                <input type="text" id="dateResult" readonly class="w-full border rounded-xl px-3 py-2 bg-slate-100" />
+                            </div>
+                            <button onclick="resetDateAddition()" class="px-4 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600 transition">초기화</button>
+                        </div>
+
+                        <hr class="my-6 border-slate-200" />
+
+                        <!-- 두 날짜 사이 일수 계산 -->
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3 text-slate-700">2. 두 날짜 사이의 일수 계산</h3>
+                            <div class="mb-4">
+                                <label class="block mb-2 font-semibold">시작 날짜</label>
+                                <input type="date" id="dateFrom" oninput="calculateDateDifference()" class="w-full border rounded-xl px-3 py-2" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-2 font-semibold">종료 날짜</label>
+                                <input type="date" id="dateTo" oninput="calculateDateDifference()" class="w-full border rounded-xl px-3 py-2" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-2 font-semibold">일수</label>
+                                <input type="text" id="dateDifference" readonly class="w-full border rounded-xl px-3 py-2 bg-slate-100" />
+                            </div>
+                            <button onclick="resetDateDifference()" class="px-4 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600 transition">초기화</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 탭 3: 개인정보 관리 가이드 -->
+            <!-- 탭 3: 원금 퍼센트·만기일시 대출 계산기 -->
+            <div id="balloon" class="tab-content">
+                <div class="bg-white rounded-lg p-6 md:p-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <h1 class="text-2xl md:text-3xl font-bold">원금 퍼센트·만기일시 대출 계산기</h1>
+                        <button id="balloonResetBtn" class="px-4 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600 transition">초기화</button>
+                    </div>
+                    <p class="text-sm md:text-base text-slate-600 mb-6">
+                        대출 원금의 <b>X%</b>만 기간 동안 매월 분할 상환하고, 나머지 <b>(1−X%)</b>는 만기일에 일시 상환하는 구조를 계산합니다.
+                    </p>
+
+                    <!-- Inputs -->
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <label class="flex flex-col gap-2 bg-white rounded-2xl p-4 shadow-sm border border-slate-200">
+                            <span class="text-sm text-slate-600">대출금 (원)</span>
+                            <input type="text" id="balloonLoan" class="border rounded-xl px-3 py-2" placeholder="예: 300,000,000" />
+                        </label>
+                        <label class="flex flex-col gap-2 bg-white rounded-2xl p-4 shadow-sm border border-slate-200">
+                            <span class="text-sm text-slate-600">연이율 (%)</span>
+                            <input type="number" id="balloonAnnualRate" class="border rounded-xl px-3 py-2" min="0" step="0.01" placeholder="예: 4.8" />
+                        </label>
+                        <label class="flex flex-col gap-2 bg-white rounded-2xl p-4 shadow-sm border border-slate-200">
+                            <span class="text-sm text-slate-600">원금 분할 비율 (X%)</span>
+                            <input type="number" id="balloonPrincipalPct" class="border rounded-xl px-3 py-2" min="0" max="100" step="0.1" placeholder="예: 7" />
+                        </label>
+                        <label class="flex flex-col gap-2 bg-white rounded-2xl p-4 shadow-sm border border-slate-200">
+                            <span class="text-sm text-slate-600">기간 (개월)</span>
+                            <input type="number" id="balloonMonths" class="border rounded-xl px-3 py-2" min="1" step="1" placeholder="예: 60" />
+                            <span id="balloonMonthsError" class="text-xs text-red-600 hidden">기간(개월)은 1 이상이어야 합니다.</span>
+                        </label>
+                    </div>
+
+                    <!-- Key results -->
+                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200">
+                            <div class="text-sm text-slate-600 mb-1">매월 원금</div>
+                            <div id="balloonMonthlyPrincipal" class="text-xl font-semibold text-slate-400">- 원</div>
+                            <div class="text-xs text-slate-500">예) 3억, X=7%, 60개월 → 350,000원</div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200">
+                            <div class="text-sm text-slate-600 mb-1">첫 달 납입액</div>
+                            <div id="balloonFirstMonthPayment" class="text-xl font-semibold text-slate-400">- 원</div>
+                            <div id="balloonFirstMonthBreakdown" class="text-xs text-slate-500">(원금 + 이자)</div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200">
+                            <div class="text-sm text-slate-600 mb-1">만기월 납입액</div>
+                            <div id="balloonFinalMonthPayment" class="text-xl font-semibold text-slate-400">- 원</div>
+                            <div id="balloonFinalMonthBreakdown" class="text-xs text-slate-500">(원금 + 이자)</div>
+                        </div>
+                    </div>
+
+                    <!-- Breakdown -->
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200">
+                            <div class="text-sm text-slate-600 mb-2">구성</div>
+                            <ul class="text-sm leading-7 list-disc pl-5">
+                                <li>기간 중 분할 상환 원금 합계: <b id="balloonPrincipalPortion" class="text-slate-400">- 원</b></li>
+                                <li>매월 고정 원금: <b id="balloonMonthlyPrincipalFixed" class="text-slate-400">- 원</b></li>
+                                <li>만기 일시상환 원금(잔액): <b id="balloonFinalBalloonPrincipal" class="text-slate-400">- 원</b></li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200">
+                            <div class="text-sm text-slate-600 mb-2">요약</div>
+                            <ul class="text-sm leading-7 list-disc pl-5">
+                                <li>월 이자율: <span id="balloonMonthlyRate" class="text-slate-400">-%</span></li>
+                                <li>총 이자(추정): <b id="balloonTotalInterest" class="text-slate-400">- 원</b></li>
+                                <li>총 납부액(원금+이자): <b id="balloonTotalPaid" class="text-slate-400">- 원</b></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <button id="balloonToggleSchedule" class="px-4 py-2 rounded-xl bg-slate-900 text-white hover:opacity-90 transition">상환 스케줄 보기</button>
+
+                    <div id="balloonScheduleContainer" class="hidden overflow-x-auto mt-4 bg-white rounded-2xl shadow-sm border border-slate-200">
+                        <table class="min-w-full text-sm">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="p-3 text-left">월</th>
+                                    <th class="p-3 text-right">월초 잔액</th>
+                                    <th class="p-3 text-right">원금</th>
+                                    <th class="p-3 text-right">이자</th>
+                                    <th class="p-3 text-right">납입액</th>
+                                    <th class="p-3 text-right">월말 잔액</th>
+                                </tr>
+                            </thead>
+                            <tbody id="balloonScheduleBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 탭 4: 개인정보 관리 가이드 -->
             <div id="guide2" class="tab-content">
                 <div class="max-w-4xl mx-auto bg-white rounded-lg p-6 md:p-8">
                     <div style="border-bottom: 3px solid #2c3e50; padding-bottom: 30px; margin-bottom: 40px;">
@@ -580,6 +722,7 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </div>
 
@@ -589,9 +732,12 @@
             // 모든 탭 컨텐츠 숨기기
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
-            
+
             // 선택된 탭 표시
-            document.getElementById(tabName).classList.add('active');
+            const tabContent = document.getElementById(tabName);
+            if (tabContent) {
+                tabContent.classList.add('active');
+            }
             event.target.classList.add('active');
         }
 
@@ -631,7 +777,7 @@
             const input = document.getElementById('vatInput');
             const rawValue = input.value;
             input.value = formatNumber(rawValue);
-            
+
             const value = parseNumber(rawValue);
             if (value > 0) {
                 const vat = Math.floor(value / 11);
@@ -698,21 +844,21 @@
             suppliers.forEach((supplier, supplierIndex) => {
                 const supplierDiv = document.createElement('div');
                 supplierDiv.className = 'bg-slate-50 rounded-lg p-4 mb-4 border border-slate-200';
-                
+
                 let amountFields = '';
                 supplier.amounts.forEach((amount, amountIndex) => {
                     amountFields += `
                         <div class="mb-3">
                             <label class="text-sm text-slate-600">금액</label>
                             <div class="flex gap-2">
-                                <input type="text" 
+                                <input type="text"
                                        id="amount-${supplierIndex}-${amountIndex}"
-                                       value="${formatNumber(amount)}" 
+                                       value="${formatNumber(amount)}"
                                        oninput="updateAmount(${supplierIndex}, ${amountIndex}, this.value)"
                                        class="flex-1 border rounded-lg px-3 py-2"
                                        placeholder="금액을 입력하세요">
-                                ${supplier.amounts.length > 1 ? 
-                                    `<button onclick="removeAmountField(${supplierIndex}, ${amountIndex})" class="px-3 py-2 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600">삭제</button>` : 
+                                ${supplier.amounts.length > 1 ?
+                                    `<button onclick="removeAmountField(${supplierIndex}, ${amountIndex})" class="px-3 py-2 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600">삭제</button>` :
                                     ''
                                 }
                             </div>
@@ -724,14 +870,14 @@
                     <div class="flex justify-between items-start mb-3">
                         <div class="flex-1">
                             <label class="text-sm text-slate-600">공급자명</label>
-                            <input type="text" 
-                                   value="${supplier.name}" 
+                            <input type="text"
+                                   value="${supplier.name}"
                                    oninput="updateSupplierName(${supplierIndex}, this.value)"
                                    class="w-full border rounded-lg px-3 py-2"
                                    placeholder="공급자명을 입력하세요">
                         </div>
-                        ${suppliers.length > 1 ? 
-                            `<button onclick="removeSupplier(${supplierIndex})" class="ml-2 mt-6 px-3 py-2 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600">공급자 삭제</button>` : 
+                        ${suppliers.length > 1 ?
+                            `<button onclick="removeSupplier(${supplierIndex})" class="ml-2 mt-6 px-3 py-2 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600">공급자 삭제</button>` :
                             ''
                         }
                     </div>
@@ -743,7 +889,7 @@
                         <span class="font-semibold text-blue-900">${supplier.name || "공급자"} 합계: ${getSupplierTotal(supplier.amounts).toLocaleString()} 원</span>
                     </div>
                 `;
-                
+
                 container.appendChild(supplierDiv);
             });
         }
@@ -821,15 +967,15 @@
         function renderDistributionTable() {
             const tbody = document.getElementById('distribution-table');
             const distSuppliers = getDistSuppliers();
-            
+
             tbody.innerHTML = '';
-            
+
             distSuppliers.forEach((key, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td class="p-3">공급자 ${key}</td>
                     <td class="p-3">
-                        <input type="text" 
+                        <input type="text"
                                value="${formatNumber(manualInputs[key] || "")}"
                                oninput="updateManualInput('${key}', this.value)"
                                id="manual-${key}"
@@ -861,8 +1007,8 @@
             const totalLoan = parseNumber(document.getElementById('manualTotal').value);
             const distributed = getTotalDistributed();
             const difference = distributed - totalLoan;
-            
-            document.getElementById('distribution-summary').textContent = 
+
+            document.getElementById('distribution-summary').textContent =
                 `이합: ${distributed.toLocaleString()}원 / 오차: ${difference.toLocaleString()}원`;
         }
 
@@ -879,10 +1025,10 @@
             const loanInput = document.getElementById('loanAmount');
             const rawLoanValue = loanInput.value;
             loanInput.value = formatNumber(rawLoanValue);
-            
+
             const rateInput = document.getElementById('annualRate2');
             rateInput.value = sanitizeDecimal(rateInput.value);
-            
+
             const yearsInput = document.getElementById('years');
             yearsInput.value = yearsInput.value.replace(/[^0-9]/g, "");
 
@@ -896,7 +1042,7 @@
                 const year = Math.floor(principal * rate * y);
                 const month = Math.floor(year / 12);
                 const day = Math.floor(year / 365);
-                
+
                 document.getElementById('yearlyInterest').value = `${year.toLocaleString()}원`;
                 document.getElementById('monthlyInterest').value = `${month.toLocaleString()}원`;
                 document.getElementById('dailyInterest').value = `${day.toLocaleString()}원`;
@@ -933,9 +1079,230 @@
             document.getElementById('yearlyLabel').textContent = "1년 이자";
         }
 
+        // ===== 날짜 계산기 =====
+        function calculateDateAddition() {
+            const dateStart = document.getElementById('dateStart').value;
+            const daysToAdd = parseInt(document.getElementById('daysToAdd').value) || 0;
+
+            if (!dateStart) {
+                document.getElementById('dateResult').value = '';
+                return;
+            }
+
+            const date = new Date(dateStart);
+            date.setDate(date.getDate() + daysToAdd);
+
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const resultDate = `${year}-${month}-${day}`;
+
+            document.getElementById('dateResult').value = resultDate;
+        }
+
+        function resetDateAddition() {
+            document.getElementById('dateStart').value = '';
+            document.getElementById('daysToAdd').value = '';
+            document.getElementById('dateResult').value = '';
+        }
+
+        function calculateDateDifference() {
+            const dateFrom = document.getElementById('dateFrom').value;
+            const dateTo = document.getElementById('dateTo').value;
+
+            if (!dateFrom || !dateTo) {
+                document.getElementById('dateDifference').value = '';
+                return;
+            }
+
+            const from = new Date(dateFrom);
+            const to = new Date(dateTo);
+
+            const timeDifference = Math.abs(to - from);
+            const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+            document.getElementById('dateDifference').value = `${daysDifference}일`;
+        }
+
+        function resetDateDifference() {
+            document.getElementById('dateFrom').value = '';
+            document.getElementById('dateTo').value = '';
+            document.getElementById('dateDifference').value = '';
+        }
+
+        // ===== 원금 퍼센트·만기일시 대출 계산기 =====
+        let balloonShowSchedule = false;
+
+        function balloonHandleLoanInput(event) {
+            const input = event.target;
+            const cursorPosition = input.selectionStart;
+            const oldValue = input.value;
+            const oldLength = oldValue.length;
+
+            const numericValue = parseFormattedNumber(input.value);
+            const formattedValue = numericValue > 0 ? formatNumberWithCommas(numericValue) : '';
+
+            input.value = formattedValue;
+
+            const newLength = formattedValue.length;
+            const lengthDiff = newLength - oldLength;
+            const newCursorPosition = cursorPosition + lengthDiff;
+
+            setTimeout(() => {
+                input.setSelectionRange(newCursorPosition, newCursorPosition);
+            }, 0);
+
+            balloonCalculate();
+        }
+
+        function balloonResetDisplay() {
+            document.getElementById('balloonMonthlyPrincipal').innerHTML = '<span class="text-slate-400">- 원</span>';
+            document.getElementById('balloonFirstMonthPayment').innerHTML = '<span class="text-slate-400">- 원</span>';
+            document.getElementById('balloonFirstMonthBreakdown').innerHTML = '<span class="text-slate-500">(원금 + 이자)</span>';
+            document.getElementById('balloonFinalMonthPayment').innerHTML = '<span class="text-slate-400">- 원</span>';
+            document.getElementById('balloonFinalMonthBreakdown').innerHTML = '<span class="text-slate-500">(원금 + 이자)</span>';
+
+            document.getElementById('balloonPrincipalPortion').innerHTML = '<span class="text-slate-400">- 원</span>';
+            document.getElementById('balloonMonthlyPrincipalFixed').innerHTML = '<span class="text-slate-400">- 원</span>';
+            document.getElementById('balloonFinalBalloonPrincipal').innerHTML = '<span class="text-slate-400">- 원</span>';
+
+            document.getElementById('balloonMonthlyRate').innerHTML = '<span class="text-slate-400">-%</span>';
+            document.getElementById('balloonTotalInterest').innerHTML = '<span class="text-slate-400">- 원</span>';
+            document.getElementById('balloonTotalPaid').innerHTML = '<span class="text-slate-400">- 원</span>';
+        }
+
+        function balloonCalculate() {
+            const loan = parseFormattedNumber(document.getElementById('balloonLoan').value);
+            const annualRate = Number(document.getElementById('balloonAnnualRate').value) || 0;
+            const principalPct = Math.max(0, Math.min(100, Number(document.getElementById('balloonPrincipalPct').value) || 0));
+            const months = Number(document.getElementById('balloonMonths').value) || 0;
+
+            if (!loan || !annualRate || !principalPct || !months) {
+                balloonResetDisplay();
+                return;
+            }
+
+            if (months <= 0) {
+                document.getElementById('balloonMonthsError').classList.remove('hidden');
+                balloonResetDisplay();
+                return;
+            } else {
+                document.getElementById('balloonMonthsError').classList.add('hidden');
+            }
+
+            const monthlyRate = annualRate > 0 ? annualRate / 100 / 12 : 0;
+            const principalPortion = loan * (principalPct / 100);
+            const monthlyPrincipal = months > 0 ? principalPortion / months : 0;
+
+            const firstMonthInterest = loan * monthlyRate;
+            const firstMonthPayment = monthlyPrincipal + firstMonthInterest;
+
+            const balanceBeforeFinal = loan - monthlyPrincipal * Math.max(0, months - 1);
+            const finalBalloonPrincipal = loan - principalPortion;
+            const finalMonthInterest = balanceBeforeFinal * monthlyRate;
+            const finalMonthPrincipal = months > 0 ? monthlyPrincipal + finalBalloonPrincipal : 0;
+            const finalMonthPayment = finalMonthPrincipal + finalMonthInterest;
+
+            let totalInterest = 0;
+            const schedule = [];
+
+            for (let i = 0; i < Math.max(0, months); i++) {
+                const m = i + 1;
+                const balAtStart = loan - monthlyPrincipal * i;
+                const interest = balAtStart * monthlyRate;
+                const principal = m === months ? monthlyPrincipal + finalBalloonPrincipal : monthlyPrincipal;
+                const payment = principal + interest;
+                const balAtEnd = m === months ? 0 : balAtStart - monthlyPrincipal;
+                totalInterest += interest;
+                schedule.push({ m, balAtStart, principal, interest, payment, balAtEnd });
+            }
+
+            const totalPaid = loan + totalInterest;
+
+            document.getElementById('balloonMonthlyPrincipal').textContent = fmt.format(Math.round(monthlyPrincipal)) + ' 원';
+            document.getElementById('balloonFirstMonthPayment').textContent = fmt.format(Math.round(firstMonthPayment)) + ' 원';
+            document.getElementById('balloonFirstMonthBreakdown').textContent =
+                `(원금 ${fmt.format(Math.round(monthlyPrincipal))} + 이자 ${fmt.format(Math.round(firstMonthInterest))})`;
+            document.getElementById('balloonFinalMonthPayment').textContent = fmt.format(Math.round(finalMonthPayment)) + ' 원';
+            document.getElementById('balloonFinalMonthBreakdown').textContent =
+                `(원금 ${fmt.format(Math.round(finalMonthPrincipal))} + 이자 ${fmt.format(Math.round(finalMonthInterest))})`;
+
+            document.getElementById('balloonPrincipalPortion').textContent = fmt.format(Math.round(principalPortion)) + ' 원';
+            document.getElementById('balloonMonthlyPrincipalFixed').textContent = fmt.format(Math.round(monthlyPrincipal)) + ' 원';
+            document.getElementById('balloonFinalBalloonPrincipal').textContent = fmt.format(Math.round(finalBalloonPrincipal)) + ' 원';
+
+            document.getElementById('balloonMonthlyRate').textContent = (monthlyRate * 100 || 0).toFixed(4) + '%';
+            document.getElementById('balloonTotalInterest').textContent = fmt.format(Math.round(totalInterest)) + ' 원';
+            document.getElementById('balloonTotalPaid').textContent = fmt.format(Math.round(totalPaid)) + ' 원';
+
+            balloonUpdateScheduleTable(schedule);
+        }
+
+        function balloonUpdateScheduleTable(schedule) {
+            const tbody = document.getElementById('balloonScheduleBody');
+            tbody.innerHTML = '';
+            schedule.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-t';
+                tr.innerHTML = `
+                    <td class="p-3">${row.m}</td>
+                    <td class="p-3 text-right">${fmt.format(Math.round(row.balAtStart))}</td>
+                    <td class="p-3 text-right">${fmt.format(Math.round(row.principal))}</td>
+                    <td class="p-3 text-right">${fmt.format(Math.round(row.interest))}</td>
+                    <td class="p-3 text-right">${fmt.format(Math.round(row.payment))}</td>
+                    <td class="p-3 text-right">${fmt.format(Math.round(row.balAtEnd))}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function balloonResetAll() {
+            document.getElementById('balloonLoan').value = '';
+            document.getElementById('balloonAnnualRate').value = '';
+            document.getElementById('balloonPrincipalPct').value = '';
+            document.getElementById('balloonMonths').value = '';
+
+            document.getElementById('balloonMonthsError').classList.add('hidden');
+
+            balloonResetDisplay();
+
+            if (balloonShowSchedule) {
+                balloonShowSchedule = false;
+                document.getElementById('balloonScheduleContainer').classList.add('hidden');
+                document.getElementById('balloonToggleSchedule').textContent = '상환 스케줄 보기';
+            }
+
+            document.getElementById('balloonScheduleBody').innerHTML = '';
+        }
+
+        function balloonToggleSchedule() {
+            balloonShowSchedule = !balloonShowSchedule;
+            const container = document.getElementById('balloonScheduleContainer');
+            if (balloonShowSchedule) {
+                container.classList.remove('hidden');
+                document.getElementById('balloonToggleSchedule').textContent = '상환 스케줄 숨기기';
+            } else {
+                container.classList.add('hidden');
+                document.getElementById('balloonToggleSchedule').textContent = '상환 스케줄 보기';
+            }
+        }
+
+        // 이벤트 리스너 추가
+        if (document.getElementById('balloonLoan')) {
+            document.getElementById('balloonLoan').addEventListener('input', balloonHandleLoanInput);
+            document.getElementById('balloonAnnualRate').addEventListener('input', balloonCalculate);
+            document.getElementById('balloonPrincipalPct').addEventListener('input', balloonCalculate);
+            document.getElementById('balloonMonths').addEventListener('input', balloonCalculate);
+            document.getElementById('balloonResetBtn').addEventListener('click', balloonResetAll);
+            document.getElementById('balloonToggleSchedule').addEventListener('click', balloonToggleSchedule);
+        }
+
         // 초기화
         renderSuppliers();
         renderDistributionTable();
+        if (document.getElementById('balloonMonthlyPrincipal')) {
+            balloonResetDisplay();
+        }
     </script>
 </body>
 </html>
