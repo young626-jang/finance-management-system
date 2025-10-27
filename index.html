@@ -168,12 +168,11 @@
                 </a>
             </div>
 
-            <!-- 빠른 이동 카드 -->
+            <!-- 빠른 이동 카드 (희망담보 가이드 버튼 삭제됨) -->
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 mb-6">
                 <h4 class="font-semibold text-slate-800 mb-4 text-lg">📑 빠른 이동</h4>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <button onclick="switchTab('calculator'); return false;" class="px-6 py-3 bg-blue-50 text-blue-600 hover:bg-blue-100 font-medium rounded-xl transition border border-blue-200 cursor-pointer">다기능 계산기</button>
-                    <button onclick="switchTab('guide1'); return false;" class="px-6 py-3 bg-blue-50 text-blue-600 hover:bg-blue-100 font-medium rounded-xl transition border border-blue-200 cursor-pointer">희망담보 가이드</button>
                     <button onclick="switchTab('guide2'); return false;" class="px-6 py-3 bg-blue-50 text-blue-600 hover:bg-blue-100 font-medium rounded-xl transition border border-blue-200 cursor-pointer">개인정보 관리</button>
                     <button onclick="switchTab('guide3'); return false;" class="px-6 py-3 bg-blue-50 text-blue-600 hover:bg-blue-100 font-medium rounded-xl transition border border-blue-200 cursor-pointer">개인정보 파기 관리</button>
                 </div>
@@ -410,221 +409,7 @@
                 </div>
             </div>
 
-            <!-- 탭 2: 희망담보 가이드 -->
-            <div id="guide1" class="tab-content">
-                <div class="guide-container max-w-4xl mx-auto bg-white rounded-lg p-6 md:p-8">
-                    <div class="guide-header">
-                        <h1 class="guide-h1">희망담보</h1>
-                        <p class="guide-subtitle">대출 상품 가이드라인 (최종 업데이트)</p>
-                    </div>
-
-                    <div class="guide-section">
-                        <h2 class="guide-h2">📋 기본 상품 정보</h2>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">상품명</span>
-                                <span class="info-value">희망담보</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">대출기간</span>
-                                <span class="info-value">2년 (6개월 변동)</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">대출대상</span>
-                                <span class="info-value">아파트 및 주상복합아파트</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">취급 가능 지역</span>
-                                <span class="info-value">서울, 경기도, 인천</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">신용점수</span>
-                                <span class="info-value">커트라인 없음<span class="tag">단, 연체자 불가</span></span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">소득 심사</span>
-                                <span class="info-value">본인/배우자/기타 소득 중요</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">상환방식</span>
-                                <span class="info-value">만기일시상환</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">중도상환수수료</span>
-                                <span class="info-value">3%</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">대출금리</span>
-                                <span class="info-value">10.9% (예외) / 11.9 ~ 13.9%</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">연체금리</span>
-                                <span class="info-value alert">대출금리 + 3.0%</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="guide-section">
-                        <h2 class="guide-h2">📊 지역별 실거래가 기준</h2>
-                        <table class="guide-table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 30%;">지역</th>
-                                    <th>실거래가 적용</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>경기도</strong></td>
-                                    <td>75%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>서울</strong></td>
-                                    <td>80%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>인천</strong></td>
-                                    <td>70%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="guide-section">
-                        <h2 class="guide-h2">📍 시세 적용 기준</h2>
-                        <table class="guide-table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 30%;">구분</th>
-                                    <th>적용 기준</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>하한가</strong></td>
-                                    <td>1~2인층</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>일반가</strong></td>
-                                    <td>그 외인층</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>시세 출처</strong></td>
-                                    <td>KB시세 우선 적용, 부동산테크 적용</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="guide-section">
-                        <h2 class="guide-h2">👤 사업자 자격 조건</h2>
-                        <table class="guide-table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 40%;">조건</th>
-                                    <th>필수여부</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>즉발사업자 가능</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>폐업이 아닌 개업상태</strong></td>
-                                    <td><span style="color: #e74c3c; font-weight: 600;">필수</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="guide-section">
-                        <h2 class="guide-h2">🏠 인정 부동산 조건</h2>
-                        <table class="guide-table">
-                            <thead>
-                                <tr>
-                                    <th>조건</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>소유권이전 3개월 이후 부동산</td>
-                                </tr>
-                                <tr>
-                                    <td>준공후 45년 미만 및 시세 3억 초과 부동산</td>
-                                </tr>
-                                <tr>
-                                    <td>이 세대수 100세대 이상 부동산</td>
-                                </tr>
-                                <tr>
-                                    <td>후순위 취급시 선순위 채권자: <strong>금융기관에 한함</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>물상보증인(배우자 및 직계존비속) 가능</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="note">
-                            ※ 금융기관: 금융소비자 보호에 관한 법률 제2조 제6호 기준 내지 마련 적용
-                        </div>
-                    </div>
-
-                    <div class="guide-section">
-                        <h2 class="guide-h2">💳 환수 및 비용 정보</h2>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <span class="info-label">환수 기한</span>
-                                <span class="info-value">92일</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">환수율</span>
-                                <span class="info-value">100%</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">사업자 발급 안내</span>
-                                <span class="info-value">비용 없음</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">용도증빙 비용</span>
-                                <span class="info-value">비용 없음</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="guide-section">
-                        <h2 class="guide-h2">❌ 취급 불가</h2>
-                        <table class="guide-table">
-                            <thead>
-                                <tr>
-                                    <th>취급 불가 사항</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>부동산업/매매업, 사치향락 등 불건전업종 (도박, 매춘, 유흥업소 등)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>연체 및 채무불이행 등의 고객</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>차주 및 담보채권자의 법인 또는 외국인 경우</td>
-                                </tr>
-                                <tr>
-                                    <td>소유권에 대한 권리침해의 소지가 있는 경우</td>
-                                </tr>
-                                <tr>
-                                    <td>세대 전입이 없는 경우</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="note">
-                            ※ 소득 없어도 가능하나, 심사시 부결될 수 있습니다.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 탭 3: 개인정보 관리 -->
+            <!-- 탭 2: 개인정보 관리 (기존 guide2) -->
             <div id="guide2" class="tab-content">
                 <div class="guide-container max-w-4xl mx-auto bg-white rounded-lg p-6 md:p-8">
                     <div class="guide-header">
@@ -939,7 +724,7 @@
                 </div>
             </div>
 
-            <!-- 탭 4: 개인정보 파기 관리 지침 -->
+            <!-- 탭 3: 개인정보 파기 관리 지침 (기존 guide3) -->
             <div id="guide3" class="tab-content">
                 <div class="guide-container max-w-4xl mx-auto bg-white rounded-lg p-6 md:p-8">
                     <article class="prose max-w-none">
@@ -1578,6 +1363,11 @@
         renderSuppliers();
         renderDistributionTable();
         resetLoanDisplay();
+        
+        // 초기 로드 시 'calculator' 탭이 활성화되도록 설정
+        document.addEventListener('DOMContentLoaded', () => {
+            switchTab('calculator');
+        });
     </script>
 </body>
 </html>
